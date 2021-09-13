@@ -5,3 +5,4 @@
     Set up Angular project
     Set up Database schema and tables
     Set up Spring mysql database connectivity with hibernate (Can not use JPA)
+    Set up cross platform communication between angular and spring to add,remove,update product
