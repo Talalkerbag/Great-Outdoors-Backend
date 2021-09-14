@@ -10,10 +10,23 @@ public class Product {
 	private int id;
 	private String name;
 	private String description;
-	private String imageuri;
+	private String imageurl;
 	private double price;
 	private int quantity;
+	private String category;
 	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public int getId() {
 		return id;
 	}
@@ -33,16 +46,21 @@ public class Product {
 		this.description = description;
 	}
 	public String getImageuri() {
-		return imageuri;
+		return imageurl;
 	}
 	public void setImageuri(String imageuri) {
-		this.imageuri = imageuri;
+		this.imageurl = imageuri;
 	}
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", imageurl=" + imageurl
+				+ ", price=" + price + ", quantity=" + quantity + ", category=" + category + "]";
 	}
 	public int getQuanity() {
 		return quantity;

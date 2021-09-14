@@ -1,5 +1,8 @@
 package com.javabandits.fullstackjava.repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +15,8 @@ public class ProductRepository {
 	DatabaseConnections myDatabase = new DatabaseConnections();
 	// Set up sessionFactory object from myDatabase class
 	SessionFactory mySqlSessionFactory = myDatabase.mySqlProductConnection();
+	
+	
 
 	public boolean save(Product product) {
 		// Set up our session object based off sessionFactory class
@@ -36,9 +41,20 @@ public class ProductRepository {
 		//get product by id
 		Product product = session.get(Product.class,id);
 		session.close();
-		System.out.println("Product Fetched");
+		System.out.println("one product fetched");
 		return product;
 		
 	}
+
+	
+	public List<Product> getAllProducts() {
+		Session session = mySqlSessionFactory.openSession();
+		session.beginTransaction();
+		List<Product> products = session.createQuery("from Product",Product.class).getResultList();
+		session.getTransaction().commit();
+		return products;
+		
+	}
+	
 
 }

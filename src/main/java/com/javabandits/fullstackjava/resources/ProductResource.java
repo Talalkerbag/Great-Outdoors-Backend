@@ -1,4 +1,6 @@
 package com.javabandits.fullstackjava.resources;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,5 +31,13 @@ public class ProductResource {
 		System.out.println("Request to fetch product reached");
 		return productService.getProduct(id);
 	}
-
+	
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/Product/all")
+	public List<Product> getAllProducts() {
+		System.out.println("Request to fetch all products reached");
+		System.out.println(productService.getAllProducts().toString());
+		return productService.getAllProducts();
+	}
 }

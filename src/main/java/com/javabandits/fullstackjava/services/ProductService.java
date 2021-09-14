@@ -1,5 +1,7 @@
 package com.javabandits.fullstackjava.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.javabandits.fullstackjava.model.Product;
@@ -17,6 +19,11 @@ public class ProductService {
 	public Product getProduct(int id) {
 		return repo.getById(id);
 	}
+
+	public List<Product> getAllProducts() {
+		return repo.getAllProducts();
+	}
+
 
 	
 }
