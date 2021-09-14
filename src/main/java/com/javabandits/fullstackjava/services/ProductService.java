@@ -24,6 +24,14 @@ public class ProductService {
 		return repo.getAllProducts();
 	}
 
+	public boolean deleteProduct(int id) {
+		return repo.deleteProduct(id);
+	}
+
+	public List<Product> getProductPriceRange(int from, int to) {
+		return repo.getProductPriceRange(from,to);
+	}
+
 
 	
 }

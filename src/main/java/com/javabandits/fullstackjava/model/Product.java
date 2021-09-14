@@ -1,12 +1,16 @@
 package com.javabandits.fullstackjava.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Product {
 
 	@Id
+	@Column(name="id")
 	private int id;
 	private String name;
 	private String description;
@@ -60,7 +64,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", imageurl=" + imageurl
-				+ ", price=" + price + ", quantity=" + quantity + ", category=" + category + "]";
+				+ ", price=" + price + ", quantity=" + quantity + ", category=" + category + "]\n";
 	}
 	public int getQuanity() {
 		return quantity;

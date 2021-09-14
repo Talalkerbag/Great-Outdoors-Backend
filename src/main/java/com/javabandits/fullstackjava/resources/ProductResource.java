@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +33,25 @@ public class ProductResource {
 		return productService.getProduct(id);
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/Product/getByPriceRange/{from}/{to}")
+	public List<Product> getProductPriceRange(@PathVariable("from") int from,@PathVariable("to") int to) {
+		System.out.println("Request to fetch product reached");
+		return productService.getProductPriceRange(from,to);
+	}
+	
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/Product/all")
 	public List<Product> getAllProducts() {
 		System.out.println("Request to fetch all products reached");
-		System.out.println(productService.getAllProducts().toString());
 		return productService.getAllProducts();
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@DeleteMapping("/Product/delete/{id}")
+	public boolean deleteProduct(@PathVariable("id") int id) {
+		System.out.println("Request to delete product reached");
+		return productService.deleteProduct(id);
 	}
 }

@@ -34,11 +34,8 @@ public class ProductRepository {
 	}
 
 	public Product getById(int id) {
-		// Set up our session object based off sessionFactory class
 		Session session = mySqlSessionFactory.openSession();
-		// Starting the session transaction
 		Transaction tx = session.beginTransaction();
-		//get product by id
 		Product product = session.get(Product.class,id);
 		session.close();
 		System.out.println("one product fetched");
@@ -54,6 +51,23 @@ public class ProductRepository {
 		session.getTransaction().commit();
 		return products;
 		
+	}
+
+	public boolean deleteProduct(int id) {
+		Session session = mySqlSessionFactory.openSession();
+		session.beginTransaction();
+		session.createQuery("delete from Product where id = :id").setParameter("id", id).executeUpdate();
+		
+		session.getTransaction().commit();
+		return true;
+	}
+
+	public List<Product> getProductPriceRange(int from, int to) {
+		Session session = mySqlSessionFactory.openSession();
+		session.beginTransaction();
+		List<Product> products = session.createQuery("from Product P where P.price >= " + from + " and P.price <= " + to,Product.class).getResultList();
+		session.getTransaction().commit();
+		return products;
 	}
 	
 
