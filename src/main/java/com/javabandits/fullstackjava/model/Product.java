@@ -11,6 +11,7 @@ public class Product {
 
 	@Id
 	@Column(name="id")
+	@GeneratedValue
 	private int id;
 	private String name;
 	private String description;
