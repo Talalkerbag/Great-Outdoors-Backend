@@ -16,6 +16,13 @@
     create empty angular components that we will work on based on the conceptual diagram
     create spring hibernate classes to serve the front end requests for list product component
     
+    9/15/2021
+    
+    create signup login components
+    set up list product and edit product component functionality in angular
+    set up a update product functionality in spring with hibernate
+    add basic component css in angular
+    
 
    
     
