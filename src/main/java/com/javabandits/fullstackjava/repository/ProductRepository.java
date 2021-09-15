@@ -3,6 +3,7 @@ package com.javabandits.fullstackjava.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,7 +29,8 @@ public class ProductRepository {
 		// committing the transaction
 		tx.commit();
 		// close the session when done
-		session.close();
+		session.clear();
+        session.close();
 		System.out.println("Product saved");
 		return true;
 	}
@@ -37,7 +39,8 @@ public class ProductRepository {
 		Session session = mySqlSessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Product product = session.get(Product.class,id);
-		session.close();
+		session.clear();
+        session.close();
 		System.out.println("one product fetched");
 		return product;
 		
@@ -49,6 +52,8 @@ public class ProductRepository {
 		session.beginTransaction();
 		List<Product> products = session.createQuery("from Product",Product.class).getResultList();
 		session.getTransaction().commit();
+		session.clear();
+        session.close();
 		return products;
 		
 	}
@@ -59,6 +64,8 @@ public class ProductRepository {
 		session.createQuery("delete from Product where id = :id").setParameter("id", id).executeUpdate();
 		
 		session.getTransaction().commit();
+		session.clear();
+        session.close();
 		return true;
 	}
 
@@ -67,7 +74,28 @@ public class ProductRepository {
 		session.beginTransaction();
 		List<Product> products = session.createQuery("from Product P where P.price >= " + from + " and P.price <= " + to,Product.class).getResultList();
 		session.getTransaction().commit();
+		session.clear();
+        session.close();
 		return products;
+	}
+
+	public boolean updateProduct(Product product) {
+		System.out.println(product.toString());
+		Session session = mySqlSessionFactory.openSession();
+		session.beginTransaction();
+//		String updateQuery = "update from Product P set P.name = '" + product.getName() + 
+//							 "' P.price = " + product.getPrice() +
+//							 " P.description = '"+ product.getDescription() +
+//							 "' P.quantity = " + product.getQuantity() + 
+//							 " P.imageUrl = '" + product.getImageurl() + 
+//							 "' P.category = '" + product.getCategory() + 
+//							 "' where P.id = " + product.getId();
+//		session.createQuery(updateQuery).executeUpdate();
+		session.update(product);
+        session.getTransaction().commit();
+        session.clear();
+        session.close();
+        return true;
 	}
 	
 

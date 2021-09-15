@@ -32,6 +32,10 @@ public class ProductService {
 		return repo.getProductPriceRange(from,to);
 	}
 
+	public boolean updateProduct(Product product) {
+		return repo.updateProduct(product);
+	}
+
 
 	
 }
