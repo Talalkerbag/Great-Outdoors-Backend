@@ -62,4 +62,7 @@ public class ProductResource {
 		System.out.println("Request to update product reached");
 		return productService.updateProduct(product);
 	}
+
+	
+	
 }

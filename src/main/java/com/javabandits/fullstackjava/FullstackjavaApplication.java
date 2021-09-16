@@ -17,10 +17,7 @@ public class FullstackjavaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FullstackjavaApplication.class, args);
 		
-		ProductRepository repo = new ProductRepository();
-//		//System.out.println(repo.getProductPriceRange(5, 10).toString());
-//		repo.deleteProduct(102);
-		System.out.println(repo.getAllProducts().toString());
+		
 	}
 
 }

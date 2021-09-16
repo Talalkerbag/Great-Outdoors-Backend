@@ -15,7 +15,7 @@ public class ProductRepository {
 	// instantiate myDatabase class
 	DatabaseConnections myDatabase = new DatabaseConnections();
 	// Set up sessionFactory object from myDatabase class
-	SessionFactory mySqlSessionFactory = myDatabase.mySqlProductConnection();
+	SessionFactory mySqlSessionFactory = myDatabase.mySqlConnection();
 	
 	
 

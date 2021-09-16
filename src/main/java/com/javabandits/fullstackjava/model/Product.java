@@ -1,10 +1,13 @@
 package com.javabandits.fullstackjava.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Product {
@@ -19,6 +22,17 @@ public class Product {
 	private double price;
 	private int quantity;
 	private String category;
+	
+	@ManyToMany
+	private List<User> users = new ArrayList<User>();
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
 	
 	public int getQuantity() {
 		return quantity;
