@@ -3,12 +3,14 @@ package com.javabandits.fullstackjava.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -17,6 +19,7 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private int product_id;
+	@Column(unique=true)
 	private String name;
 	private String description;
 	private String imageurl;
@@ -24,16 +27,17 @@ public class Product {
 	private int quantity;
 	private String category;
 	
-//	@ManyToMany(mappedBy = "products", fetch=FetchType.EAGER)
-//	private List<User> users = new ArrayList<User>();
-//	
-//	public List<User> getUsers() {
-//		return users;
-//	}
-//	public void setUsers(List<User> users) {
-//		this.users = users;
-//	}
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "product_user", joinColumns = { @JoinColumn(name = "product_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "user_id") })
+	private List<User> users = new ArrayList<User>();
 	
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	
 	public int getQuantity() {
 		return quantity;

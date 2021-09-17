@@ -1,4 +1,5 @@
 package com.javabandits.fullstackjava.resources;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,9 @@ public class ProductResource {
 	
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/Product/addProduct")
-	public boolean addProduct(@RequestBody Product prod) {
+	public boolean addProduct(@RequestBody Product prod)  {
 		System.out.println("Request to add product reached!");
-		return productService.addProduce(prod);
+		return productService.addProduct(prod);
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")

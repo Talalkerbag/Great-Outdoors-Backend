@@ -1,5 +1,7 @@
 package com.javabandits.fullstackjava.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.javabandits.fullstackjava.model.Product;
 import com.javabandits.fullstackjava.model.User;
 import com.javabandits.fullstackjava.services.UserService;
 
@@ -31,5 +33,18 @@ public class UserResource {
 		System.out.println("Request to fetch user reached");
 		return userService.getUser(id);
 	}
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/User/all")
+	public List<User> getAllUsers() {
+		System.out.println("Request to fetch all users reached");
+		return userService.getAllusers();
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping("/User/checkUser")
+	public User checkUserExist(@RequestBody User user) {
+		System.out.println("Request to check user exist reached");
+		return userService.checkUserExist(user);
+	}
 }

@@ -1,5 +1,7 @@
 package com.javabandits.fullstackjava.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.javabandits.fullstackjava.model.User;
@@ -16,6 +18,14 @@ public class UserService {
 
 	public User getUser(int id) {
 		return repo.getByID(id);
+	}
+
+	public User checkUserExist(User user) {
+		return repo.checkUserExist(user);
+	}
+
+	public List<User> getAllusers() {
+		return repo.getAllUsers();
 	}
 
 }

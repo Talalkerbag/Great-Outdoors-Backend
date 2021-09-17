@@ -1,17 +1,24 @@
 package com.javabandits.fullstackjava.repository;
 
-import java.util.ArrayList;
+
+
+
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
-import org.hibernate.Query;
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+
 import com.javabandits.fullstackjava.dbconnections.DatabaseConnections;
 import com.javabandits.fullstackjava.model.Product;
+import com.javabandits.fullstackjava.model.User;
 
-public class ProductRepository {
+
+public class ProductRepository  {
 	// instantiate myDatabase class
 	DatabaseConnections myDatabase = new DatabaseConnections();
 	// Set up sessionFactory object from myDatabase class
@@ -19,20 +26,28 @@ public class ProductRepository {
 	
 	
 
-	public boolean save(Product product) {
-		// Set up our session object based off sessionFactory class
+	public boolean save(Product product){
 		Session session = mySqlSessionFactory.openSession();
-		// Starting the session transaction
 		Transaction tx = session.beginTransaction();
-		// add product to our session database table
-		session.save(product);
-		// committing the transaction
-		tx.commit();
-		// close the session when done
-		session.clear();
-        session.close();
-		System.out.println("Product saved");
-		return true;
+		Product checkProduct = new Product();
+		
+		try {
+			checkProduct = session.createQuery("from Product P where P.name = '" + product.getName() + "'",Product.class).getSingleResult();
+		}catch(NoResultException e) {
+			
+		}
+		
+		if(checkProduct.getName() != null) {
+			System.out.println("Product already exist");
+			return false;
+		}else {
+			session.save(product);
+			tx.commit();
+			session.clear();
+	        session.close();
+			System.out.println("Product saved");
+			return true;
+		}
 	}
 
 	public Product getById(int id) {

@@ -1,5 +1,6 @@
 package com.javabandits.fullstackjava.services;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class ProductService {
 	
 	ProductRepository repo = new ProductRepository();
 	
-	public boolean addProduce(Product product) {
+	public boolean addProduct(Product product)  {
 		return repo.save(product);
 	}
 
