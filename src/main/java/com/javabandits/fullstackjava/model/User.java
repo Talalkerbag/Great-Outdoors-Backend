@@ -3,10 +3,13 @@ package com.javabandits.fullstackjava.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
@@ -15,33 +18,59 @@ import javax.persistence.ManyToMany;
 public class User {
 	
 	@Id
-	@Column(name="id")
 	@GeneratedValue
-	private int id;
+	private int user_id;
 	private String email;
 	private String password;
-	private String phoneNumber;
+	private String userName;
 	
-	@ManyToMany(mappedBy="users")
-	private List<Product> products = new ArrayList<Product>();
-
+	
+//	@ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//        name = "Product_User", 
+//        joinColumns = { @JoinColumn(name = "user_id") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "product_id") }
+//    )
+//	private List<Product> products = new ArrayList<Product>();
+//	
+//	public List<Product> getProducts() {
+//		return products;
+//	}
+//
+//	public void setProducts(List<Product> products) {
+//		this.products = products;
+//	}
+	
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
+		
+	}
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", email=" + email + ", password=" + password + ", userName=" + userName
+				+ "]";
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public int getUser_id() {
+		return user_id;
 	}
 
-	
-	public int getId() {
-		return id;
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -55,21 +84,9 @@ public class User {
 		this.password = password;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+	
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 	
 	
 

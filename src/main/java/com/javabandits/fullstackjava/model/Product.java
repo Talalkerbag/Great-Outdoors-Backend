@@ -5,17 +5,18 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 @Entity
 public class Product {
 
 	@Id
-	@Column(name="id")
 	@GeneratedValue
-	private int id;
+	private int product_id;
 	private String name;
 	private String description;
 	private String imageurl;
@@ -23,15 +24,15 @@ public class Product {
 	private int quantity;
 	private String category;
 	
-	@ManyToMany
-	private List<User> users = new ArrayList<User>();
-	
-	public List<User> getUsers() {
-		return users;
-	}
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+//	@ManyToMany(mappedBy = "products", fetch=FetchType.EAGER)
+//	private List<User> users = new ArrayList<User>();
+//	
+//	public List<User> getUsers() {
+//		return users;
+//	}
+//	public void setUsers(List<User> users) {
+//		this.users = users;
+//	}
 	
 	
 	public int getQuantity() {
@@ -46,12 +47,7 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -76,14 +72,21 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", imageurl=" + imageurl
-				+ ", price=" + price + ", quantity=" + quantity + ", category=" + category + "]\n";
+		return "Product [product_id=" + product_id + ", name=" + name + ", description=" + description + ", imageurl="
+				+ imageurl + ", price=" + price + ", quantity=" + quantity + ", category=" + category + "]";
+	}
+	public int getProduct_id() {
+		return product_id;
+	}
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

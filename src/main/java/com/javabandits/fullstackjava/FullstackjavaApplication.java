@@ -18,6 +18,8 @@ public class FullstackjavaApplication {
 		SpringApplication.run(FullstackjavaApplication.class, args);
 		
 		
+		
+		
 	}
 
 }
