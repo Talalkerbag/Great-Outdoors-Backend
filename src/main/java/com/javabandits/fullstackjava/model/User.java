@@ -2,6 +2,7 @@ package com.javabandits.fullstackjava.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,14 +32,16 @@ public class User {
 	
 	
 
-	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy="users",  fetch=FetchType.EAGER)
-	private List<Product> products = new ArrayList<Product>();
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "product_user", joinColumns = { @JoinColumn(name = "user_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "product_id") })
+	private Set<Product> products;
 	
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 	

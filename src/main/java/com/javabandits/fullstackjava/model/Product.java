@@ -2,6 +2,7 @@ package com.javabandits.fullstackjava.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product {
@@ -27,15 +30,14 @@ public class Product {
 	private int quantity;
 	private String category;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "product_user", joinColumns = { @JoinColumn(name = "product_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "user_id") })
-	private List<User> users = new ArrayList<User>();
+	@JsonIgnore
+	@ManyToMany(cascade = { CascadeType.ALL }, mappedBy="products",  fetch=FetchType.EAGER)
+	private Set<User> users;
 	
-	public List<User> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
-	public void setUsers(List<User> users) {
+	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
 	
