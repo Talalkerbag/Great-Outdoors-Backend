@@ -33,8 +33,8 @@ public class UserProductResource {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping("/UserProduct/remove/{productId}")
-	public boolean removeUserProduct(@RequestBody String userEmail, @PathVariable("id") int productId) {
+	@PostMapping("/UserProduct/remove/{productId}")
+	public boolean removeUserProduct(@RequestBody String userEmail, @PathVariable("productId") int productId) {
 		System.out.println("Request to remove product: " + productId + " from user: " + userEmail);
 		return userProductService.removeUserProduct(userEmail, productId);
 	}

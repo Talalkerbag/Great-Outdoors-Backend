@@ -29,7 +29,10 @@ public class User {
 	private String address;
 	private String role;
 	
-	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "user_wishlish", joinColumns = { @JoinColumn(name = "user_id") }, 
+	inverseJoinColumns = {@JoinColumn(name = "product_id") })
+	private Set<Product> wishList;
 	
 
 	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -49,6 +52,14 @@ public class User {
 		super();
 		
 	}
+	public Set<Product> getWishList() {
+		return wishList;
+	}
+
+	public void setWishList(Set<Product> wishList) {
+		this.wishList = wishList;
+	}
+
 	
 	@Override
 	public String toString() {

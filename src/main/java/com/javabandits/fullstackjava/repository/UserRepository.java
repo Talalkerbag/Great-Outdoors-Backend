@@ -19,8 +19,9 @@ public class UserRepository {
 	public boolean save(User user) {
 		Session session = mySqlSessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		user.setRole("customer");
-
+		if(!user.getRole().equals("admin") || !user.getRole().equals("product master")) {
+			user.setRole("customer");
+		}
 		User checkUser = new User();
 		
 		try {
