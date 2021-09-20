@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import com.javabandits.fullstackjava.model.Product;
+import com.javabandits.fullstackjava.model.User;
 import com.javabandits.fullstackjava.repository.UserProductRepository;
 
 @Service
@@ -25,6 +26,16 @@ public class UserProductService {
 	public Set<Product> getAllUserProducts(String userEmail) {
 		return repo.getAllUserProducts(userEmail);
 	}
+
+	public boolean removeUserProductFromWishlist(String userEmail, int productId) {
+		return repo.removeUserProductFromWishlist(userEmail, productId);
+	}
+
+	public boolean removeAllProductsFromUserCart(String userEmail) {
+		return repo.removeAllProductsFromUserCart(userEmail);
+	}
+	
+	
 	
 
 }

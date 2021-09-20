@@ -28,4 +28,13 @@ public class UserService {
 		return repo.getAllUsers();
 	}
 
+	public boolean updateUser(User user) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addProductToWishList(String userEmail, int productId) {
+		return repo.addProductToWishList(userEmail,productId);
+	}
+
 }

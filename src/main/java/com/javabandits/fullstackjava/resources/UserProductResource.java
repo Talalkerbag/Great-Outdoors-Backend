@@ -45,5 +45,20 @@ public class UserProductResource {
 		System.out.println("Request to fetch all user products reached");
 		return userProductService.getAllUserProducts(userEmail);
 	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping("/UserProduct/remove/wishlist/{productId}")
+	public boolean removeUserProductFromWishlist(@RequestBody String userEmail, @PathVariable("productId") int productId) {
+		System.out.println("Request to remove product: " + productId + " from user: " + userEmail + " wishlist");
+		return userProductService.removeUserProductFromWishlist(userEmail, productId);
+	}
+	
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping("/UserProduct/removeAll/")
+	public boolean removeAllProductsFromUserCart(@RequestBody String userEmail) {
+		System.out.println("Request to remove all product from user: " + userEmail + " from cart");
+		return userProductService.removeAllProductsFromUserCart(userEmail);
+	}
 
 }
