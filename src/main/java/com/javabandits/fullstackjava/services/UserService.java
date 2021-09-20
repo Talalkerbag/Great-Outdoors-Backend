@@ -29,8 +29,7 @@ public class UserService {
 	}
 
 	public boolean updateUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return repo.updateUser(user);
 	}
 
 	public boolean addProductToWishList(String userEmail, int productId) {

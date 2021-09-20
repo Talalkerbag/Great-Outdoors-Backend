@@ -19,7 +19,7 @@ public class UserRepository {
 	public boolean save(User user) {
 		Session session = mySqlSessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		if(!(user.getRole().equals("admin")) || !(user.getRole().equals("product master"))) {
+		if(user.getRole().equals("")) {
 			user.setRole("customer");
 		}
 		User checkUser = new User();
@@ -115,6 +115,17 @@ public class UserRepository {
 			
 			return false;
 		}
+	}
+
+	public boolean updateUser(User user) {
+		System.out.println(user.toString());
+		Session session = mySqlSessionFactory.openSession();
+		session.beginTransaction();
+		session.update(user);
+        session.getTransaction().commit();
+        session.clear();
+        session.close();
+        return true;
 	}
 	
 }
